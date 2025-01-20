@@ -46,11 +46,13 @@ jobs:
           node-version: 20.x
 
       - name: Install Package
-        working-directory: /
-        run: npm install
+        working-directory: ./
+        run: |
+          npm install -g pnpm
+          pnpm install
 
       - name: Build Packages
-        working-directory: /
+        working-directory: ./
         run: npm run build
 
       - name: Docker meta

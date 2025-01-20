@@ -6,19 +6,19 @@ on:
     branches: [main]
     types: [opened, synchronize, reopened]
     paths:
-      - "runtimes/nodejs/**"
+      - "**"
       - ".github/workflows/dockerize-runtime-nodejs.yml"
       - "!**/*.md"
-      - "!runtimes/nodejs/package-lock.json"
+      - "!package-lock.json"
   push:
     tags:
       - v*.*.*
     branches: [main]
     paths:
-      - "runtimes/nodejs/**"
+      - "**"
       - ".github/workflows/dockerize-runtime-nodejs.yml"
       - "!**/*.md"
-      - "!runtimes/nodejs/package-lock.json"
+      - "!package-lock.json"
 
 # permissions:
 #   pull-requests: write
@@ -157,8 +157,8 @@ jobs:
         id: docker-build
         uses: docker/build-push-action@v3
         with:
-          context: ./runtimes/nodejs
-          file: ./runtimes/nodejs/Dockerfile.init
+          context: ./
+          file: ./Dockerfile.init
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

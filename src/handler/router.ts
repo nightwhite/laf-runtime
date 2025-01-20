@@ -38,7 +38,7 @@ const uploader = multer({
   },
 })
 
-export const router = Router()
+export const router: Router = Router()
 
 router.post('/proxy/:policy', handleDatabaseProxy)
 router.get('/_/typing/package', handlePackageTypings)

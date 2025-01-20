@@ -47,7 +47,10 @@ jobs:
 
       - name: Install Package
         working-directory: ./
-        run: npm cache clean --force && npm install
+        run: |
+          npm cache clean --force
+          rm -rf node_modules package-lock.json
+          npm install
 
       - name: Build Packages
         working-directory: ./

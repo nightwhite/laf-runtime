@@ -46,11 +46,11 @@ jobs:
           node-version: 20.x
 
       - name: Install Package
-        working-directory: runtimes/nodejs
+        working-directory: /
         run: npm cache clean --force && npm install
 
       - name: Build Packages
-        working-directory: runtimes/nodejs
+        working-directory: /
         run: npm run build
 
       - name: Docker meta
@@ -58,8 +58,8 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/${{ github.repository_owner }}/runtime-node
-            docker.io/${{ secrets.DOCKER_USERNAME }}/runtime-node
+            ghcr.io/${{ github.repository_owner }}/laf-runtime
+            docker.io/${{ secrets.DOCKER_USERNAME }}/laf-runtime
           # https://github.com/docker/metadata-action#typesemver
           tags: |
             type=semver,pattern={{version}}
@@ -91,8 +91,8 @@ jobs:
         id: docker-build
         uses: docker/build-push-action@v3
         with:
-          context: ./runtimes/nodejs
-          file: ./runtimes/nodejs/Dockerfile
+          context: ./
+          file: ./Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

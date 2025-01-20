@@ -50,7 +50,8 @@ jobs:
         run: |
           npm cache clean --force
           rm -rf node_modules package-lock.json
-          npm install
+          npm config set registry https://registry.npmmirror.com
+          npm install --no-audit
 
       - name: Build Packages
         working-directory: ./

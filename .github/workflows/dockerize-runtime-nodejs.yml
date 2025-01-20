@@ -47,9 +47,7 @@ jobs:
 
       - name: Install Package
         working-directory: ./
-        run: |
-          npm install -g pnpm
-          pnpm install
+        run: npm cache clean --force && npm install
 
       - name: Build Packages
         working-directory: ./

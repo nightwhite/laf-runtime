@@ -48,10 +48,8 @@ jobs:
       - name: Install Package
         working-directory: ./
         run: |
-          npm cache clean --force
-          rm -rf node_modules package-lock.json
-          npm config set registry https://registry.npmmirror.com
-          npm install --no-audit
+          npm install -g pnpm
+          pnpm install
 
       - name: Build Packages
         working-directory: ./

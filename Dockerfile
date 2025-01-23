@@ -24,9 +24,9 @@ RUN chown -R node:node /app/cloud_functions
 RUN chown node:node /tmp/custom_dependency
 # RUN npm install
 # RUN npm run build
-RUN chown -R node:node /app/node_modules
-RUN chown node:node /app/package.json
-RUN chown node:node /app/package-lock.json
+RUN chown -R node:node /app/node_modules && \
+    chown node:node /app/package.json && \
+    (test -f /app/package-lock.json && chown node:node /app/package-lock.json || true)
 
 USER node
 CMD [ "sh", "/app/start.sh" ]
